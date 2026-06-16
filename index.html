@@ -427,7 +427,9 @@ async function sendMessage() {
   showTyping();
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    // Use corsproxy.io to bypass CORS restrictions when hosted externally
+    const API_URL = 'https://corsproxy.io/?url=https://api.anthropic.com/v1/messages';
+    const res = await fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
